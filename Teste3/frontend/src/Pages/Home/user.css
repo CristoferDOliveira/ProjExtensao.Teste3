@@ -1,0 +1,56 @@
+.perfil{
+    border: solid 2px;
+    border-color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+h1{
+    font-size: 70%;
+}
+p{
+    font-size: 80%;
+}
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; 
+    
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+}
+.apagar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; 
+    
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+}
+.apagar img {
+    width: 40px;
+    border-radius: 5px;
+}
+.mudar{
+    width: fit-content;
+    font-size: small;
+    accent-color: red !important;
+}
+.radios{
+    margin: 7px;
+    padding: 7px;
+    font-size: small;
+    border: solid 2px;
+    width: fit-content;
+    border-color: rgb(14, 13, 13);
+    border-radius: 15px;
+}
