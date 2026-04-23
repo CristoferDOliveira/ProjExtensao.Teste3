@@ -13,7 +13,7 @@ function Home() {
 
   async function createUsers() {
     try {
-      await fetch("http://127.0.0.1:5000/usuarios", {
+      const response = await fetch("http://127.0.0.1:5000/usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -22,10 +22,13 @@ function Home() {
           senha: inputSenha.current.value,
         }),
       });
-      inputNome.current.value = "";
-      inputEmail.current.value = "";
-      inputSenha.current.value = "";
-      alert("Usuário cadastrado com sucesso!");
+      
+      if (response.ok) {
+        inputNome.current.value = "";
+        inputEmail.current.value = "";
+        inputSenha.current.value = "";
+        alert("Usuário cadastrado com sucesso!");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +44,9 @@ function Home() {
           senha: inputSenha.current.value,
         }),
       });
+      
       const data = await response.json();
+      
       if (response.ok) {
         setUserLogged({ 
           id: data.id, 
@@ -49,6 +54,7 @@ function Home() {
           email: inputEmail.current.value,
           senha: inputSenha.current.value 
         });
+        inputSenha.current.value = ""; 
       } else {
         alert(data.mensagem);
       }
@@ -61,7 +67,6 @@ function Home() {
     return <Perfil user={userLogged} onLogout={() => setUserLogged(null)} />;
   }
 
- 
   if (view === "recuperar") {
     return <Recuperar onVoltar={() => setView("home")} />;
   }
@@ -70,9 +75,9 @@ function Home() {
     <div>
       <h1>Gerenciar Usuário</h1>
       <form>
-        <input ref={inputNome} type="text" placeholder="Usuario de Souza" />
-        <input ref={inputEmail} type="email" placeholder="usuario@email.com" />
-        <input ref={inputSenha} type="password" placeholder="Sua senha" />
+        <input ref={inputNome} type="text" placeholder="Nome Completo" autoComplete="name" />
+        <input ref={inputEmail} type="email" placeholder="E-mail" autoComplete="email" />
+        <input ref={inputSenha} type="password" placeholder="Sua senha" autoComplete="current-password" />
         
         <p className="esquecer" onClick={() => setView("recuperar")} style={{cursor: 'pointer'}}>
           Esqueci minha senha
